@@ -3,9 +3,7 @@ package com.redhat.consulting.keycloak.rest.example;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.services.resource.RealmResourceProvider;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 
 public class UsernameChangeFormProvider implements RealmResourceProvider {
 
@@ -19,6 +17,10 @@ public class UsernameChangeFormProvider implements RealmResourceProvider {
 		return this;
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	@GET
 	@Produces("text/html")
 	public String get() {
@@ -28,7 +30,8 @@ public class UsernameChangeFormProvider implements RealmResourceProvider {
 
 	@POST
 	@Produces("text/html")
-	public String post() {
+	@Consumes("multipart/form-data")
+	public String post(@FormParam("uniqueId") String id, @FormParam("existingUsername") String existingUsername, @FormParam("newUsername") String newUsername) {
 		// Handle the POST from the form and process the form data to complete the password change
 		return null;
 	}
