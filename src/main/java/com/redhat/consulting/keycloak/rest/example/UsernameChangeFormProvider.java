@@ -4,6 +4,8 @@ import org.keycloak.models.KeycloakSession;
 import org.keycloak.services.resource.RealmResourceProvider;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Request;
 
 public class UsernameChangeFormProvider implements RealmResourceProvider {
 
@@ -31,7 +33,7 @@ public class UsernameChangeFormProvider implements RealmResourceProvider {
 	@POST
 	@Produces("text/html")
 	@Consumes("multipart/form-data")
-	public String post(@FormParam("uniqueId") String id, @FormParam("existingUsername") String existingUsername, @FormParam("newUsername") String newUsername) {
+	public String post(@Context Request request, @FormParam("uniqueId") String id, @FormParam("existingUsername") String existingUsername, @FormParam("newUsername") String newUsername) {
 		// Handle the POST from the form and process the form data to complete the password change
 		return null;
 	}
