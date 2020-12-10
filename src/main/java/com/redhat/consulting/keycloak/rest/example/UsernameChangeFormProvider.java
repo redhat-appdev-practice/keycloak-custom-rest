@@ -22,7 +22,7 @@ public class UsernameChangeFormProvider implements RealmResourceProvider {
 	@GET
 	@Produces("text/html")
 	public String get() {
-		// Return HTML form for changing password
+		// Return HTML form for changing username
 		return null;
 	}
 
