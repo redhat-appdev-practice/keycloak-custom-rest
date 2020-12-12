@@ -28,7 +28,6 @@ public class UsernameChangeFormProviderFactory implements RealmResourceProviderF
 	public void postInit(KeycloakSessionFactory factory) {
 		LOG.info("Post-init UserChangeRestResource");
 		// NO-OP
-
 	}
 
 	public void close() {

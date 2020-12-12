@@ -81,5 +81,4 @@ public class UsernameChangeRestResource {
 		// Handle the POST from the form and process the form data to complete the password change
 		return String.format("%s requested their username to be changed from '%s' to '%s'", id, existingUsername, newUsername);
 	}
-
 }
