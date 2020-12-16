@@ -1,7 +1,11 @@
 package com.redhat.consulting.keycloak.rest.example;
 
 import org.jboss.logging.Logger;
+import org.keycloak.Config;
 import org.keycloak.models.KeycloakSession;
+import org.keycloak.models.KeycloakSessionFactory;
+import org.keycloak.services.resource.RealmResourceProvider;
+import org.keycloak.services.resource.RealmResourceProviderFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
@@ -13,7 +17,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Path("changeusername")
-public class UsernameChangeRestResource {
+public class UsernameChangeRestResource implements RealmResourceProvider, RealmResourceProviderFactory {
 
 	private static final Logger LOG = Logger.getLogger(UsernameChangeRestResource.class);
 
@@ -80,5 +84,38 @@ public class UsernameChangeRestResource {
 	public String post(@Context Request request, @FormParam("uniqueId") String id, @FormParam("existingUsername") String existingUsername, @FormParam("newUsername") String newUsername) {
 		// Handle the POST from the form and process the form data to complete the password change
 		return String.format("%s requested their username to be changed from '%s' to '%s'", id, existingUsername, newUsername);
+	}
+
+
+	// This becomes the basis of the URL path
+	// http(s)://<keycloak server>/auth/realms/<realm>/<ID>
+	public static final String ID = "changeusername";
+
+	public Object getResource() {
+		return new UsernameChangeRestResource(session);
+	}
+
+	public RealmResourceProvider create(KeycloakSession session) {
+		LOG.info("Creating UserChangeRestResource");
+		return this;
+	}
+
+	public void init(Config.Scope config) {
+		LOG.info("Initializing UserChangeRestResource");
+		// NO-OP
+	}
+
+	public void postInit(KeycloakSessionFactory factory) {
+		LOG.info("Post-init UserChangeRestResource");
+		// NO-OP
+	}
+
+	public void close() {
+		LOG.info("Closing UserChangeRestResource");
+		// NO-OP
+	}
+
+	public String getId() {
+		return ID;
 	}
 }

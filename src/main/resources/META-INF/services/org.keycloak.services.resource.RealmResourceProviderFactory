@@ -1,1 +1,1 @@
-com.redhat.consulting.keycloak.rest.example.UsernameChangeFormProviderFactory
+com.redhat.consulting.keycloak.rest.example.UsernameChangeRestResource
